@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docker-spring-boot
+spec:
+  selector: 
+    matchLabels:
+      app: docker-spring-boot
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: docker-spring-boot
+        version: v1
+    spec:
+      containers:
+      - name: docker-spring-boot
+        image: docker-spring-boot
+        ports:
+        - containerPort: 8000
+      imagePullSecrets:
+      - name: registrypullsecret
